@@ -1,0 +1,286 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{% block title %}Академия вокала{% endblock %}</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="{% static 'css/style.min.css' %}" rel="stylesheet">
+    <style type="text/css">
+        html,
+        body,
+        header,
+        .carousel {
+        {% if request.path == '/' %}
+            height: 60vh;
+        {% elif 'contact' in request.path %}
+            height: 70vh;
+        {% else %}
+            height: 300px;
+        {% endif %}
+        }
+
+
+        @media (max-width: 740px) {
+
+            html,
+            body,
+            header,
+            .carousel {
+            {% if request.path == '/' %}
+                height: 100vh;
+            {% elif 'contact' in request.path %}
+                height: 100vh;
+            {% else %}
+                height: 300px;
+            {% endif %}
+            }
+        }
+
+        @media (min-width: 800px) and (max-width: 850px) {
+
+            html,
+            body,
+            header,
+            .carousel {
+            {% if request.path == '/' %}
+                height: 100vh;
+            {% elif 'contact' in request.path %}
+                height: 100vh;
+            {% else %}
+                height: 300px;
+            {% endif %}
+            }
+        }
+
+
+        @media (min-width: 800px) and (max-width: 850px) {
+            .navbar:not(.top-nav-collapse) {
+                background: #929FBA !important;
+            }
+        }
+
+        [class*="ymaps-2"][class*="-ground-pane"] {
+            filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
+            /* Firefox 3.5+ */
+            -webkit-filter: grayscale(100%);
+            /* Chrome 19+ & Safari 6+ */
+        }
+
+        .row-flex, .row-flex > div[class*='col-'] {
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            flex: 1 1 auto;
+        }
+
+        .row-flex-wrap {
+            -webkit-flex-flow: row wrap;
+            align-content: flex-start;
+            flex: 0;
+        }
+
+        .row-flex > div[class*='col-'] {
+            margin: -.2px;
+        }
+
+    </style>
+
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=e09a7b36-3001-4b00-9c99-3cd70a64c542&lang=ru_RU"
+            type="text/javascript">
+    </script>
+</head>
+
+<body style="overflow-x:hidden;">
+
+<header>
+
+    <!-- Navbar -->
+    {% include 'inc/_nav.html' %}
+    <!-- Navbar -->
+
+    {% if request.path == '/' %}
+        {% include 'inc/_carousel.html' %}
+    {% elif 'contact' in request.path %}
+        {% include 'inc/_map.html' %}
+    {% else %}
+        {% include 'inc/_page_title.html' %}
+    {% endif %}
+
+</header>
+
+<main>
+
+    <!--Main layout-->
+    {% block content %}
+    {% endblock %}
+    <!--Main layout-->
+
+
+</main>
+<!--Footer-->
+{% include 'inc/_footer.html' %}
+<!--/.Footer-->
+
+<!-- SCRIPTS -->
+<!-- JQuery -->
+<script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+<!-- MDB Masonry -->
+{#<script type="text/javascript" src="{% static 'js/addons/masonry.pkgd.min.js' %}"></script>#}
+{#<script type="text/javascript" src="{% static 'js/addons/imagesloaded.pkgd.min.js' %}"></script>#}
+<!-- Initializations -->
+<script type="text/javascript">
+    // Animations initialization
+    new WOW().init();
+
+</script>
+<script type="text/javascript">
+    // Counter
+    (function ($) {
+        $.fn.counter = function () {
+            const $this = $(this),
+                numberFrom = parseInt($this.attr('data-from')),
+                numberTo = parseInt($this.attr('data-to')),
+                delta = numberTo - numberFrom,
+                deltaPositive = delta > 0 ? 1 : 0,
+                time = parseInt($this.attr('data-time')),
+                changeTime = 10;
+
+            let currentNumber = numberFrom,
+                value = delta * changeTime / time;
+            var interval1;
+            const changeNumber = () => {
+                currentNumber += value;
+                //checks if currentNumber reached numberTo
+                (deltaPositive && currentNumber >= numberTo) || (!deltaPositive && currentNumber <= numberTo) ? currentNumber = numberTo : currentNumber;
+                this.text(parseInt(currentNumber));
+                currentNumber == numberTo ? clearInterval(interval1) : currentNumber;
+            }
+
+            interval1 = setInterval(changeNumber, changeTime);
+        }
+    }(jQuery));
+
+    $(document).ready(function () {
+
+        $('.count-up').counter();
+        $('.count1').counter();
+        $('.count2').counter();
+        $('.count3').counter();
+
+        new WOW().init();
+
+        setTimeout(function () {
+            $('.count5').counter();
+        }, 3000);
+    });
+
+</script>
+<script type="text/javascript">
+
+    ymaps.ready(init);
+
+    function init() {
+        var myMap = new ymaps.Map("map", {
+                center: [55.598858, 37.725271],
+                zoom: 17
+            }, {
+                searchControlProvider: 'yandex#search'
+            }),
+            myGeoObject = new ymaps.GeoObject({
+                geometry: {
+                    type: "Point",
+                    coordinates: [55.598858, 37.725271]
+                },
+                properties: {
+                    iconContent: 'Академия Вокала',
+                    hintContent: 'Москва, ул. Каширское шоссе 65, к 3'
+                }
+            }, {
+                preset: 'islands#blackStretchyIcon',
+                draggable: false
+            });
+
+        myMap.behaviors
+            .disable('scrollZoom');
+
+        myMap.geoObjects
+            .add(myGeoObject);
+
+        var contactMap = new ymaps.Map("contact_map", {
+                center: [55.544197, 37.696089],
+                zoom: 11
+            }, {
+                searchControlProvider: 'yandex#search'
+            }),
+            contactGeoObject1 = new ymaps.GeoObject({
+                geometry: {
+                    type: "Point",
+                    coordinates: [55.598858, 37.725271]
+                },
+                properties: {
+                    iconContent: 'Академия Вокала',
+                    hintContent: 'Москва, ул. Каширское шоссе 65, к 3'
+                }
+            }, {
+                preset: 'islands#blackStretchyIcon',
+                draggable: false
+            }),
+            contactGeoObject2 = new ymaps.GeoObject({
+                geometry: {
+                    type: "Point",
+                    coordinates: [55.452161, 37.735692]
+                },
+                properties: {
+                    iconContent: 'Академия Вокала Филиал',
+                    hintContent: '142 000 МО, г. Домодедово, ул. Ломоносова дом 10'
+                }
+            }, {
+                preset: 'islands#blackStretchyIcon',
+                draggable: false
+            }),
+            contactGeoObject3 = new ymaps.GeoObject({
+                geometry: {
+                    type: "Point",
+                    coordinates: [55.551084, 37.702355]
+                },
+                properties: {
+                    iconContent: 'Академия Вокала Филиал',
+                    hintContent: '142 700 МО, г. Видное, ул. Советская 10/1, пом. 203'
+                }
+            }, {
+                preset: 'islands#blackStretchyIcon',
+                draggable: false
+            });
+
+        contactMap.behaviors
+            .disable('scrollZoom');
+
+        contactMap.geoObjects
+            .add(contactGeoObject1)
+            .add(contactGeoObject2)
+            .add(contactGeoObject3);
+    }
+
+
+</script>
+</body>
+
+</html>

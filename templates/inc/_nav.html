@@ -1,0 +1,47 @@
+{% load static %}
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+        <div class="container">
+
+            <!-- Brand -->
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <strong>АКАДЕМИЯ ВОКАЛА</strong>
+            </a>
+
+            <!-- Collapse -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Links -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <!-- Left -->
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item{% if request.path == '/' %} active{% endif %}">
+                        <a class="nav-link" href="{% url 'home' %}">Главная
+                        </a>
+                    </li>
+                    <li class="nav-item{% if 'about' in request.path %} active{% endif %}">
+                        <a class="nav-link" href="{% url 'about' %}">О нас</a>
+                    </li>
+                    <li class="nav-item{% if 'international' in request.path %} active{% endif %}">
+                        <a class="nav-link" href="{% url 'international' %}">Международное обучение</a>
+                    </li>
+                    <li class="nav-item{% if 'classes' in request.path %} active{% endif %}">
+                        <a class="nav-link" href="{% url 'classes' %}">Занятия</a>
+                    </li>
+                    <li class="nav-item{% if 'contact' in request.path %} active{% endif %}">
+                        <a class="nav-link" href="{% url 'contact' %}">Контакты</a>
+                    </li>
+                </ul>
+
+                <!-- Right -->
+                <a href="{% url 'international' %}">
+                <img src="{% static 'img/ABRSM_logo_horizontal_white.svg' %}" alt="" width="110">
+            </a>
+
+            </div>
+
+        </div>
+    </nav>

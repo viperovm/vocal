@@ -1,0 +1,19 @@
+{% load static %}
+<div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel">
+    <div class="carousel-inner" role="listbox">
+        <div class="carousel-item active">
+            <div class="view"
+                 style="background-image: url('{% static 'img/slider/IMG_0146.JPG' %}'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+                <div class="mask rgba-black-strong d-flex justify-content-left align-items-center">
+                    <div class="container">
+                        <div class="text-left white-text wow fadeIn">
+                            <p class="my-0"><em>Раздел:</em></p>
+                            <h1 class="my-0"><strong>{{ title }}</strong></h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

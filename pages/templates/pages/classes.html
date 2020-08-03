@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    {{ block.super }} | {{ title }}
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid px-5">
+        <section class="mt-5 wow fadeIn">
+            <div class="row">
+                <div class="col-md-4 mb-0 mb-md-4 pl-4 pt-4 pb-4 pr-2 text-center text-md-left">
+                    <div class="row">
+                        <div class="col-12 mb-3">
+                            <img src="{{ classes.imageURL }}" alt="" class="img-fluid z-depth-1-half">
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-4 mb-0 mb-md-4 p-4 text-center text-md-left">
+                    <div class="row">
+                        <div class="z-depth-1-half col-12 mb-3 text-center text-md-left">
+                            <h3 class="h3 my-3">{{ classes.heading_private }}</h3>
+                            <p>{{ classes.text_private|linebreaks }}</p>
+                        </div>
+
+                        {% for item in private_classes_elements %}
+
+                            <div class="z-depth-1-half col-12 mb-3 text-center text-md-left">
+                                <h5 class="my-3">{{ item.heading }}</h5>
+                                <p>{{ item.text|linebreaks }}</p>
+                            </div>
+
+                        {% endfor %}
+
+
+                    </div>
+                </div>
+                <div class="col-md-4 mb-0 mb-md-4 p-4 text-center text-md-left">
+                    <div class="row">
+                        <div class="z-depth-1-half col-12 mb-3 text-center text-md-left">
+                            <h3 class="h3 my-3">{{ classes.heading_group }}</h3>
+                            <p>{{ classes.text_group|linebreaks }}</p>
+                        </div>
+
+                        {% for item in group_classes_elements %}
+
+                            <div class="z-depth-1-half col-12 mb-3 text-center text-md-left">
+                                <h5 class="my-3">{{ item.heading }}</h5>
+                                <p>{{ item.text|linebreaks }}</p>
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}
